@@ -29,17 +29,6 @@
 
 ---
 
-## AI & Automation
-
-| Tool | How It's Used |
-|------|---------------|
-| **Claude Code** | Primary AI coding assistant — used for architecture decisions, refactoring, and complex bug investigation across large TypeScript/PHP codebases |
-| **Anthropic API** | Direct API integration and prompt engineering for building AI-augmented features into products |
-| **Puppeteer** | Browser automation for EHR web scraping, integration testing, and data extraction pipelines |
-| **GitHub Actions** | CI/CD pipelines — lint, type-check, test, build, and release workflows across multiple repositories |
-
----
-
 ## Stats
 
 <div align="center">
