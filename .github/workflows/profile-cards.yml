@@ -1,0 +1,56 @@
+name: Profile cards
+
+on:
+  schedule:
+    - cron: "0 */12 * * *"
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths: [.github/workflows/profile-cards.yml]
+
+jobs:
+  generate:
+    name: Generate and publish cards
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    env:
+      STATS: show_icons=true&hide_border=true&hide_rank=true&hide=stars,issues,contribs&show=prs_merged&include_all_commits=true&bg_color=00000000
+      LIGHT: title_color=0969da&icon_color=0969da&text_color=1f2328
+      DARK: title_color=4493f8&icon_color=4493f8&text_color=e6edf3
+
+    steps:
+      - name: Generate snake
+        uses: Platane/snk/svg-only@v3
+        with:
+          github_user_name: ${{ github.repository_owner }}
+          outputs: |
+            dist/github-snake.svg
+            dist/github-snake-dark.svg?palette=github-dark
+
+      # STATS_TOKEN is optional: a classic PAT (repo, read:user) adds private repos to the cards
+      - name: Generate stats card (light)
+        uses: stats-organization/github-readme-stats-action@v2
+        with:
+          card: stats
+          options: ${{ env.STATS }}&${{ env.LIGHT }}
+          path: dist/stats.svg
+          token: ${{ secrets.STATS_TOKEN || github.token }}
+          fail_on_error: true
+
+      - name: Generate stats card (dark)
+        uses: stats-organization/github-readme-stats-action@v2
+        with:
+          card: stats
+          options: ${{ env.STATS }}&${{ env.DARK }}
+          path: dist/stats-dark.svg
+          token: ${{ secrets.STATS_TOKEN || github.token }}
+          fail_on_error: true
+
+      - name: Deploy to output branch
+        uses: crazy-max/ghaction-github-pages@v5
+        with:
+          target_branch: output
+          build_dir: dist
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
