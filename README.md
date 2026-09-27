@@ -29,7 +29,7 @@ My stack is the whole lifecycle, not a list of languages. AI does a lot of the t
 | **Operate** | Logs, metrics, dashboards and alerts · post-release monitoring · incident reports |
 | **Communicate** | Tickets, support-ready release notes and incident reports drafted by agents and owned by me · weekly recaps for non-engineers |
 
-**Workflow.** Every project runs on [ai-workflow](https://github.com/rafagomes/ai-workflow): PRD → architecture → threat model → roadmap → specs → parallel agents in isolated worktrees → fresh-context review → human merge. On top of it I write my own skills and agents for tickets, releases, post-release monitoring and incident reports — the visibility work that usually gets skipped.
+**Workflow.** PRD → architecture → threat model → roadmap → specs → parallel agents in isolated worktrees → fresh-context review → human merge. Around it I write my own skills and agents for tickets, releases, post-release monitoring and incident reports — the visibility work that usually gets skipped.
 
 ## What I know
 
